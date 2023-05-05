@@ -189,7 +189,7 @@
 </span><span class="kw">pub fn </span>push() {
     Command::new(<span class="string">&quot;git&quot;</span>)
         .arg(<span class="string">&quot;push&quot;</span>)
-        .arg(<span class="string">&quot;--follow-tags&quot;</span>)
+        .arg(<span class="string">&quot;--tags&quot;</span>)
         .status()
         .expect(<span class="string">&quot;Failed to push.&quot;</span>);
 }
