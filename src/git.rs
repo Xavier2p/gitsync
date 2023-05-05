@@ -67,7 +67,7 @@ pub fn tag(tag: &str) {
 pub fn push() {
     Command::new("git")
         .arg("push")
-        .arg("--follow-tags")
+        .arg("--tags")
         .status()
         .expect("Failed to push.");
 }
