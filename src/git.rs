@@ -56,8 +56,6 @@ pub fn tag(tag: &str) {
 }
 
 /// Push the changes to the remote.
-/// ## Arguments
-/// * `have_tag` - If the commit have a tag.
 /// ## Example
 /// ```
 /// use git::push;
@@ -65,6 +63,19 @@ pub fn tag(tag: &str) {
 /// push(false); // If the commit don't have a tag.
 /// ```
 pub fn push() {
+    Command::new("git")
+        .arg("push")
+        .status()
+        .expect("Failed to push.");
+}
+
+/// Push the tags to the remote.
+/// ## Example
+/// ```
+/// use git::push_tag;
+/// push_tag();
+/// ```
+pub fn push_tag() {
     Command::new("git")
         .arg("push")
         .arg("--tags")

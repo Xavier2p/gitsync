@@ -58,6 +58,7 @@ use std::process;
 /// The main function.
 fn main() {
     let args: args::Args = args::Args::parse();
+    let mut has_tag: bool = false;
 
     if args.verbose {
         git::status();
@@ -72,11 +73,16 @@ fn main() {
     git::commit(&args.message);
 
     if args.tag.is_some() {
+        has_tag = true;
         git::tag(&args.tag.unwrap());
     }
 
     if !args.local {
-        git::push();
+        if has_tag {
+            git::push_tag();
+        } else {
+            git::push();
+        }
     }
 
     if args.verbose {
