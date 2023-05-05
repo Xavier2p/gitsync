@@ -13,15 +13,15 @@
 //! ```
 //!
 //! # Arguments
-//! * `<MESSAGE>`    The message of the commit
+//! * `<MESSAGE>`    - The message of the commit
 //!
 //! # Options
-//! * `-h`, `--help`         Print help information
-//! * `-l`, `--local`        If used, the commit won't be pushed
-//! * `-t`, `--tag <TAG>`    The tag of the commit
-//! * `-u`, `--updated`      Add only the updated files
-//! * `-v`, `--verbose`      Enable verbose mode
-//! * `-V`, `--version`      Print version information
+//! * `-h`, `--help`         - Print help information
+//! * `-l`, `--local`        - If used, the commit won't be pushed
+//! * `-t`, `--tag <TAG>`    - The tag of the commit
+//! * `-u`, `--updated`      - Add only the updated files
+//! * `-v`, `--verbose`      - Enable verbose mode
+//! * `-V`, `--version`      - Print version information
 //!
 //! # Examples
 //! ```bash
@@ -31,8 +31,7 @@
 //!
 //! # Installation
 //! ```bash
-//! git clone <REPOSITORY_URL>
-//! cd gitsync
+//! git clone https://github.com/Xavier2p/gitsync.git && cd gitsync
 //! cargo build --release
 //! ```
 //!

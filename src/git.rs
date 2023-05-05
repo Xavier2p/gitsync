@@ -1,6 +1,25 @@
 //! # Git Module
 //!
 //! This module contains functions for interacting with git.
+//! 
+//! The functions are:
+//! * `commit` - Creates a commit with the given message.
+//! * `tag` - Tag the commit with the given tag.
+//! * `push` - Push the changes to the remote.
+//! * `add` - Stages the files.
+//! * `status` - Gets the status of the repository.
+//! * `log` - Gets the 10 last logs of the repository.
+//! 
+//! ## Example
+//! ```
+//! use git::{commit, tag, push, add, status, log};
+//! commit("My commit message");
+//! tag("v1.0.0");
+//! push();
+//! add(true);
+//! status();
+//! log();
+//! ```
 use std::process::Command;
 
 /// Creates a commit with the given message.
