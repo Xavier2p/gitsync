@@ -1,4 +1,4 @@
-name: Deploy Documentation
+name: Continuous Integration
 
 on:
     push:
@@ -23,3 +23,34 @@ jobs:
               with:
                   command: build
                   args: --release --all-features
+
+    deploy:
+      name: Deploy
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+
+        - name: Setup Rustup
+          uses: actions-rs/toolchain@v1
+          with:
+              toolchain: stable
+
+        - name: Build Documentation
+          uses: actions-rs/cargo@v1
+          with:
+              command: doc
+              args: --no-deps
+
+        - name: Prepare Documentation
+          run: |
+              mkdir -p docs
+              cp -r target/doc/* docs/
+              echo '<meta http-equiv="refresh" content="0; URL=docs/">' > docs/index.html
+        
+        - name: Deploy Documentation
+          uses: peaceiris/actions-gh-pages@v3
+          with:
+              github_token: ${{ secrets.GITHUB_TOKEN }}
+              publish_dir: ./docs
