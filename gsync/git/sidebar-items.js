@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":["add","commit","log","push","status","tag"]};
+window.SIDEBAR_ITEMS = {"fn":["add","commit","log","push","push_tag","status","tag"]};

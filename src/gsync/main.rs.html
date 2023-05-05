@@ -85,6 +85,12 @@
 <a href="#85" id="85">85</a>
 <a href="#86" id="86">86</a>
 <a href="#87" id="87">87</a>
+<a href="#88" id="88">88</a>
+<a href="#89" id="89">89</a>
+<a href="#90" id="90">90</a>
+<a href="#91" id="91">91</a>
+<a href="#92" id="92">92</a>
+<a href="#93" id="93">93</a>
 </pre><pre class="rust"><code><span class="doccomment">//! &gt; **A tool to earn time at each `git` actions.**
 //!
 //! # Description
@@ -145,6 +151,7 @@
 <span class="doccomment">/// The main function.
 </span><span class="kw">fn </span>main() {
     <span class="kw">let </span>args: args::Args = args::Args::parse();
+    <span class="kw">let </span><span class="kw-2">mut </span>has_tag: bool = <span class="bool-val">false</span>;
 
     <span class="kw">if </span>args.verbose {
         git::status();
@@ -159,11 +166,16 @@
     git::commit(<span class="kw-2">&amp;</span>args.message);
 
     <span class="kw">if </span>args.tag.is_some() {
+        has_tag = <span class="bool-val">true</span>;
         git::tag(<span class="kw-2">&amp;</span>args.tag.unwrap());
     }
 
     <span class="kw">if </span>!args.local {
-        git::push();
+        <span class="kw">if </span>has_tag {
+            git::push_tag();
+        } <span class="kw">else </span>{
+            git::push();
+        }
     }
 
     <span class="kw">if </span>args.verbose {
