@@ -40,7 +40,7 @@ jobs:
                   args: --no-deps
 
             - name: Prepare Documentation
-              run: echo '<meta http-equiv="refresh" content="0; URL=gsync">' > docs/index.html
+              run: echo '<meta http-equiv="refresh" content="0; URL=gsync">' > index.html
 
             - name: Deploy Documentation
               uses: peaceiris/actions-gh-pages@v3
