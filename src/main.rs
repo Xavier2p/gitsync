@@ -80,9 +80,8 @@ fn main() {
     if !args.local {
         if has_tag {
             git::push_tag();
-        } else {
-            git::push();
         }
+        git::push();
     }
 
     if args.verbose {
