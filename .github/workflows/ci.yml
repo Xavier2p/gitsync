@@ -33,17 +33,17 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
 
-            - name: Prepare Documentation
-              run: |
-                  mkdir -p docs
-                  cp -r target/doc/* docs/
-                  echo '<meta http-equiv="refresh" content="0; URL=gsync">' > docs/index.html
-
             - name: Build Documentation
               uses: actions-rs/cargo@v1
               with:
                   command: doc
                   args: --no-deps
+
+            - name: Prepare Documentation
+              run: |
+                  mkdir -p docs
+                  cp -r target/doc/* docs/
+                  echo '<meta http-equiv="refresh" content="0; URL=gsync">' > docs/index.html
 
             - name: Deploy Documentation
               uses: peaceiris/actions-gh-pages@v3
