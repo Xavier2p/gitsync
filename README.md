@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/github/license/xavier2p/gitsync?logo=github&style=for-the-badge)
 ![GitHub top language](https://img.shields.io/github/languages/top/xavier2p/gitsync?color=orange&logo=rust&style=for-the-badge)
 ![Documentation Status](https://img.shields.io/website?down_color=critical&down_message=DOWN&label=Documentation&logo=github&style=for-the-badge&up_color=success&up_message=UP&url=https%3A%2F%2Fxavier2p.github.io%2Fgitsync)
-![Release](https://img.shields.io/github/release/xavier2p/gitsync?logo=github&style=for-the-badge)
+![Release](https://img.shields.io/github/v/release/xavier2p/gitsync?label=latest%20release&logo=github&style=for-the-badge)
 
 _A tool to earn time at each `git` actions._
 
