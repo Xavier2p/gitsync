@@ -1,5 +1,10 @@
 # `gsync`
 
+![Actions](https://img.shields.io/github/actions/workflow/status/xavier2p/gitsync/ci.yml?label=Continuous%20Integration&logo=github&style=for-the-badge)
+![License](https://img.shields.io/github/license/xavier2p/gitsync?logo=github&style=for-the-badge)
+![GitHub top language](https://img.shields.io/github/languages/top/xavier2p/gitsync?color=orange&logo=rust&style=for-the-badge)
+<!-- ![Release](https://img.shields.io/github/release/xavier2p/gitsync?logo=github&style=for-the-badge) -->
+
 _A tool to earn time at each `git` actions._
 
 ## Usage
