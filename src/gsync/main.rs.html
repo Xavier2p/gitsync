@@ -162,7 +162,7 @@
         git::status();
     }
 
-    git::commit(<span class="kw-2">&amp;</span>args.message);
+    git::commit(<span class="kw-2">&amp;</span>args.message, args.sign);
 
     <span class="kw">if </span>args.tag.is_some() {
         has_tag = <span class="bool-val">true</span>;
