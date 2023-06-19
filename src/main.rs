@@ -18,6 +18,7 @@
 //! # Options
 //! * `-h`, `--help`         - Print help information
 //! * `-l`, `--local`        - If used, the commit won't be pushed
+//! * `-s`, `--sign`         - Sign the commit
 //! * `-t`, `--tag <TAG>`    - The tag of the commit
 //! * `-u`, `--updated`      - Add only the updated files
 //! * `-v`, `--verbose`      - Enable verbose mode

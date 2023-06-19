@@ -29,12 +29,13 @@ gsync [OPTIONS] [MESSAGE]
 
 ## Options
 
-* `-h`, `--help`         Print help information
+* `-h`, `--help`         Prints help information
 * `-l`, `--local`        If used, the commit won't be pushed
-* `-t`, `--tag <TAG>`    The tag of the commit
-* `-u`, `--updated`      Add only the updated files
-* `-v`, `--verbose`      Enable verbose mode
-* `-V`, `--version`      Print version information
+* `-s`, `--sign`         Signs the commit
+* `-t`, `--tag <TAG>`    Tags the commit
+* `-u`, `--updated`      Adds only the updated files
+* `-v`, `--verbose`      Enables verbose mode
+* `-V`, `--version`      Prints version information
 
 ## Examples
 
