@@ -1,9 +1,9 @@
 //! # Args Module
-//! 
+//!
 //! This module contains the arguments parser.
-//! 
+//!
 //! I use `clap` for parsing the arguments.
-//! 
+//!
 //! ## Example
 //! ```
 //! use args::Args;
@@ -42,4 +42,8 @@ pub struct Args {
     #[clap(short, long)]
     /// Add only the updated files.
     pub updated: bool,
+
+    #[clap(short, long)]
+    /// Sign the commit.
+    pub sign: bool,
 }

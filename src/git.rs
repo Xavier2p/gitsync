@@ -1,7 +1,7 @@
 //! # Git Module
 //!
 //! This module contains functions for interacting with git.
-//! 
+//!
 //! The functions are:
 //! * `commit` - Creates a commit with the given message.
 //! * `tag` - Tag the commit with the given tag.
@@ -9,7 +9,7 @@
 //! * `add` - Stages the files.
 //! * `status` - Gets the status of the repository.
 //! * `log` - Gets the 10 last logs of the repository.
-//! 
+//!
 //! ## Example
 //! ```
 //! use git::{commit, tag, push, add, status, log};
@@ -30,9 +30,10 @@ use std::process::Command;
 /// use git::commit;
 /// commit("My commit message");
 /// ```
-pub fn commit(message: &str) {
+pub fn commit(message: &str, sign: bool) {
     Command::new("git")
         .arg("commit")
+        .arg(if sign { "-S" } else { "" })
         .arg("-m")
         .arg(message)
         .status()

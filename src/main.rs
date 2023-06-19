@@ -70,7 +70,7 @@ fn main() {
         git::status();
     }
 
-    git::commit(&args.message);
+    git::commit(&args.message, args.sign);
 
     if args.tag.is_some() {
         has_tag = true;
