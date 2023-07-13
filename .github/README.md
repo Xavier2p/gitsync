@@ -47,7 +47,7 @@ gsync -uvlt v1.0.0 "My commit message"
 ## Installation
 
 ```bash
-git clone <REPOSITORY_URL>
+git clone https://github.com/Xavier2p/gitsync.git
 cd gitsync
 cargo build --release
 ```
@@ -64,4 +64,5 @@ This project is under the MIT License.
 
 ## Author
 
-**gsync** © [Xavier2p](https://github.com/Xavier2p)
+**`gsync`** © [Xavier2p](https://github.com/Xavier2p)
+
