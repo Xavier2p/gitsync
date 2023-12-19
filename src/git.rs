@@ -128,7 +128,8 @@ pub fn log() {
         .arg("--graph")
         .arg("--decorate")
         .arg("--all")
-        .arg("-n 10")
+        .arg("-n")
+        .arg("10")
         .status()
         .expect("Failed to get log.");
 }

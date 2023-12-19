@@ -18,32 +18,29 @@ use clap::Parser;
 /// let args: Args = Args::parse();
 /// ```
 #[derive(Parser)]
-#[clap(about, version, author)]
+#[command(about, version, author)]
 pub struct Args {
-    #[clap(
-        forbid_empty_values = true,
-        default_value = "[autocommit]: Work in Progress"
-    )]
-    /// Message to assign at the commit.
+    #[arg(default_value = "[gsync]: Work in Progress")]
+    /// Message to assign to the commit.
     pub message: String,
 
-    #[clap(short, long)]
+    #[arg(short, long)]
     /// Tag to assign at the commit.
     pub tag: Option<String>,
 
-    #[clap(short, long)]
+    #[arg(short, long)]
     /// If used, the commit won't be pushed, only committed.
     pub local: bool,
 
-    #[clap(short, long)]
-    /// Enables verbose mode.
+    #[arg(short, long)]
+    /// Enable verbose mode.
     pub verbose: bool,
 
-    #[clap(short, long)]
+    #[arg(short, long)]
     /// Add only the updated files.
     pub updated: bool,
 
-    #[clap(short, long)]
+    #[arg(short, long)]
     /// Sign the commit.
     pub sign: bool,
 }

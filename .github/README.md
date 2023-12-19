@@ -1,41 +1,55 @@
-<div align="center">
-    <h1>
-        <code>gsync</code>
-    </h1>
-    <div>
-        <img src="https://img.shields.io/github/actions/workflow/status/xavier2p/gitsync/ci.yml?label=Continuous%20Integration&logo=githubactions&style=for-the-badge" />
-        <img src="https://img.shields.io/github/languages/top/xavier2p/gitsync?color=orange&logo=rust&style=for-the-badge" />
-    </div>
-    <div>
-        <img src="https://img.shields.io/github/license/xavier2p/gitsync?logo=github&style=for-the-badge" />
-        <img src="https://img.shields.io/github/v/release/xavier2p/gitsync?label=latest%20release&logo=github&style=for-the-badge" />
-        <img src="https://img.shields.io/website?down_color=critical&down_message=DOWN&label=Documentation&logo=github&style=for-the-badge&up_color=success&up_message=UP&url=https%3A%2F%2Fxavier2p.github.io%2Fgitsync" />
-    </div>
-</div>
+# `gsync`
+
+[![ci-status](https://img.shields.io/github/actions/workflow/status/xavier2p/gitsync/ci.yml?label=Continuous%20Integration&logo=githubactions&style=for-the-badge)](https://github.com/Xavier2p/gitsync/actions)
+[![rust](https://img.shields.io/github/languages/top/xavier2p/gitsync?color=orange&logo=rust&style=for-the-badge)](https://rust-lang.org)
+
+[![license](https://img.shields.io/github/license/xavier2p/gitsync?logo=github&style=for-the-badge&color=yellow)](https://github.com/Xavier2p/gitsync/blob/main/LICENSE)
+[![release](https://img.shields.io/github/v/release/xavier2p/gitsync?label=latest%20release&logo=github&style=for-the-badge)](https://github.com/Xavier2p/gitsync/releases)
+[![docs-status](https://img.shields.io/website?down_color=critical&down_message=DOWN&label=Documentation&logo=github&style=for-the-badge&up_color=success&up_message=UP&url=https%3A%2F%2Fxavier2p.github.io%2Fgitsync)](https://xavier2p.github.io/gitsync)
 
 ---
 
 > A tool to earn time at each `git` actions.
 
-## Usage
+At each call, the tool performs:
 
-```bash
-gsync [OPTIONS] [MESSAGE]
+```console
+$ git add -A 
+# or --updated if you use the `-u` option
+
+$ git commit -m "<MESSAGE>"
+# we can add the option `-s` to use commit signature
+
+$ git tag -a <TAG_NAME> -m "<MESSAGE>"
+# if you use `-t <NAME>`
+
+$ git push
+# only if you don't use `-l`, follows tags if selected
 ```
 
-## Arguments
+You can add `-v` to enable verbose at each step.
 
-* `<MESSAGE>`    The message of the commit
+## Usage
 
-## Options
+```console
+$ gsync --help
+A simple tool to use `git` with ease.
+Written in Rust.
 
-* `-h`, `--help`         Prints help information
-* `-l`, `--local`        If used, the commit won't be pushed
-* `-s`, `--sign`         Signs the commit
-* `-t`, `--tag <TAG>`    Tags the commit
-* `-u`, `--updated`      Adds only the updated files
-* `-v`, `--verbose`      Enables verbose mode
-* `-V`, `--version`      Prints version information
+Usage: gsync [OPTIONS] [MESSAGE]
+
+Arguments:
+  [MESSAGE]  Message to assign to the commit [default: "[gsync]: Work in Progress"]
+
+Options:
+  -t, --tag <TAG>  Tag to assign at the commit
+  -l, --local      If used, the commit won't be pushed, only committed
+  -v, --verbose    Enable verbose mode
+  -u, --updated    Add only the updated files
+  -s, --sign       Sign the commit
+  -h, --help       Print help
+  -V, --version    Print version
+```
 
 ## Examples
 
@@ -47,15 +61,8 @@ gsync -uvlt v1.0.0 "My commit message"
 ## Installation
 
 ```bash
-git clone https://github.com/Xavier2p/gitsync.git
-cd gitsync
-cargo build --release
-```
-
-## Add to PATH
-
-```bash
-sudo cp target/release/gsync /usr/local/bin
+git clone https://github.com/Xavier2p/gitsync.git && cd gitsync
+cargo install --path .
 ```
 
 ## License
@@ -65,4 +72,3 @@ This project is under the MIT License.
 ## Author
 
 **`gsync`** © [Xavier2p](https://github.com/Xavier2p)
-

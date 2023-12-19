@@ -1,30 +1,47 @@
-//! > **A tool to earn time at each `git` actions.**
+//! *A tool to earn time at each `git` actions.*
 //!
-//! # Description
-//! A simple tool to use `git` with ease.
+//! ## Description
 //!
-//! Written in Rust.
+//! A simple tool to use `git` with ease. At each call, the tool performs:
 //!
-//! /!\ This project is a test for me to learn Rust.
+//! ```console
+//! $ git add -A
+//! # or --updated if you use the `-u` option
 //!
-//! # Usage
-//! ```bash
-//! gsync [OPTIONS] [MESSAGE]
+//! $ git commit -m "<MESSAGE>"
+//! # we can add the option `-s` to use commit signature
+//!
+//! $ git tag -a <TAG_NAME> -m "<MESSAGE>"
+//! # if you use `-t <NAME>`
+//!
+//! $ git push
+//! # only if you don't use `-l`, follows tags if selected
 //! ```
 //!
-//! # Arguments
-//! * `<MESSAGE>`    - The message of the commit
+//! ## Usage
 //!
-//! # Options
-//! * `-h`, `--help`         - Print help information
-//! * `-l`, `--local`        - If used, the commit won't be pushed
-//! * `-s`, `--sign`         - Sign the commit
-//! * `-t`, `--tag <TAG>`    - The tag of the commit
-//! * `-u`, `--updated`      - Add only the updated files
-//! * `-v`, `--verbose`      - Enable verbose mode
-//! * `-V`, `--version`      - Print version information
+//! ```console
+//! $ gsync --help
+//! A simple tool to use `git` with ease.
+//! Written in Rust.
 //!
-//! # Examples
+//! Usage: gsync [OPTIONS] [MESSAGE]
+//!
+//! Arguments:
+//!   [MESSAGE]  Message to assign to the commit [default: "[gsync]: Work in Progress"]
+//!
+//! Options:
+//!   -t, --tag <TAG>  Tag to assign at the commit
+//!   -l, --local      If used, the commit won't be pushed, only committed
+//!   -v, --verbose    Enable verbose mode
+//!   -u, --updated    Add only the updated files
+//!   -s, --sign       Sign the commit
+//!   -h, --help       Print help
+//!   -V, --version    Print version
+//! ```
+//!
+//! ## Examples
+//!
 //! ```bash
 //! gsync "My commit message"
 //! gsync -uvlt v1.0.0 "My commit message"
@@ -33,12 +50,7 @@
 //! # Installation
 //! ```bash
 //! git clone https://github.com/Xavier2p/gitsync.git && cd gitsync
-//! cargo build --release
-//! ```
-//!
-//! # Add to PATH
-//! ```bash
-//! sudo cp target/release/gsync /usr/local/bin
+//! cargo install --path .
 //! ```
 //!
 //! # License
@@ -49,7 +61,7 @@
 //!
 //! Authored and maintained by Xavier2p.
 //!
-//! >Fun fact, this project is deployed with `gsync` itself.
+//! *Fun fact, this project is deployed with `gsync` itself.*
 
 mod args;
 mod git;
