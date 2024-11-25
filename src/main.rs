@@ -65,8 +65,50 @@
 
 mod args;
 mod git;
+use args::Commands;
 use clap::Parser;
 use std::process;
+
+fn parse_command(command: args::Commands) -> String {
+    match command {
+        Commands::Build { message, scope } => {
+            create_commit_message("build".to_string(), message, scope)
+        }
+        Commands::Ci { message, scope } => create_commit_message("ci".to_string(), message, scope),
+        Commands::Chore { message, scope } => {
+            create_commit_message("chore".to_string(), message, scope)
+        }
+        Commands::Docs { message, scope } => {
+            create_commit_message("docs".to_string(), message, scope)
+        }
+        Commands::Feat { message, scope } => {
+            create_commit_message("feat".to_string(), message, scope)
+        }
+        Commands::Fix { message, scope } => {
+            create_commit_message("fix".to_string(), message, scope)
+        }
+        Commands::Perf { message, scope } => {
+            create_commit_message("perf".to_string(), message, scope)
+        }
+        Commands::Refactor { message, scope } => {
+            create_commit_message("refactor".to_string(), message, scope)
+        }
+        Commands::Style { message, scope } => {
+            create_commit_message("style".to_string(), message, scope)
+        }
+        Commands::Test { message, scope } => {
+            create_commit_message("test".to_string(), message, scope)
+        }
+    }
+}
+
+fn create_commit_message(ctype: String, message: String, scope: Option<String>) -> String {
+    if scope.is_some() {
+        format!("{}({}): {}", ctype, scope.unwrap(), message)
+    } else {
+        format!("{}: {}", ctype, message)
+    }
+}
 
 /// The main function.
 fn main() {
@@ -83,7 +125,13 @@ fn main() {
         git::status();
     }
 
-    git::commit(&args.message, args.sign);
+    let commit_message: String = parse_command(args.command);
+
+    if args.verbose {
+        println!("Commit message: {}", commit_message);
+    }
+
+    git::commit(&commit_message, args.sign);
 
     if args.tag.is_some() {
         has_tag = true;
