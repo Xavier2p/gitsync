@@ -69,6 +69,21 @@ use args::Commands;
 use clap::Parser;
 use std::process;
 
+/// Parse the command and return the commit message.
+///
+/// ## Arguments
+/// * `command` - The command to parse.
+///
+/// ## Example
+/// ```
+/// use main::parse_command;
+/// let message: String = parse_command(Commands::Feat { message: "My commit message".to_string(),
+/// scope: Some("scope".to_string()) });
+/// assert_eq!(message, "feat(scope): My commit message");
+/// ```
+///
+/// ## Returns
+/// The commit message.
 fn parse_command(command: args::Commands) -> String {
     match command {
         Commands::Build { message, scope } => {
@@ -102,6 +117,21 @@ fn parse_command(command: args::Commands) -> String {
     }
 }
 
+/// Create a commit message with the given type, message and scope.
+///
+/// ## Arguments
+/// * `ctype` - The type of the commit.
+/// * `message` - The message of the commit.
+/// * `scope` - The scope of the commit.
+///
+/// ## Example
+/// ```
+/// use main::create_commit_message;
+/// let message: String = create_commit_message("feat".to_string(), "My commit message".to_string(), Some("scope".to_string()));
+/// assert_eq!(message, "feat(scope): My commit message");
+/// ```
+/// ## Returns
+/// The commit message.
 fn create_commit_message(ctype: String, message: String, scope: Option<String>) -> String {
     if scope.is_some() {
         format!("{}({}): {}", ctype, scope.unwrap(), message)
