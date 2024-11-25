@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":["main"],"mod":["args","git"]};
+window.SIDEBAR_ITEMS = {"fn":["create_commit_message","main","parse_command"],"mod":["args","git"]};
