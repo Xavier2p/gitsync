@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/git.rs`."><title>git.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-fa3bb1812debf86c.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gsync" data-themes="" data-resource-suffix="" data-rustdoc-version="1.74.1 (a28077b28 2023-12-04)" data-channel="1.74.1" data-search-js="search-8be46b629f5f14a8.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-c5bd66d33317d69f.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../gsync/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/git.rs`."><title>git.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-492a78a4a87dcc01.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gsync" data-themes="" data-resource-suffix="" data-rustdoc-version="1.82.0 (f6e511eec 2024-10-15)" data-channel="1.82.0" data-search-js="search-a99f1315e7cc5121.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-118b08c4c78b968e.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-921df33f47b8780c.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-3b12f09e550e0385.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -148,8 +148,8 @@
 //! ## Example
 //! ```
 //! use git::{commit, tag, push, add, status, log};
-//! commit(&quot;My commit message&quot;);
-//! tag(&quot;v1.0.0&quot;);
+//! commit("My commit message");
+//! tag("v1.0.0");
 //! push();
 //! add(true);
 //! status();
@@ -163,16 +163,16 @@
 /// ## Example
 /// ```
 /// use git::commit;
-/// commit(&quot;My commit message&quot;);
+/// commit("My commit message");
 /// ```
 </span><span class="kw">pub fn </span>commit(message: <span class="kw-2">&amp;</span>str, sign: bool) {
-    Command::new(<span class="string">&quot;git&quot;</span>)
-        .arg(<span class="string">&quot;commit&quot;</span>)
-        .arg(<span class="kw">if </span>sign { <span class="string">&quot;-S&quot; </span>} <span class="kw">else </span>{ <span class="string">&quot;&quot; </span>})
-        .arg(<span class="string">&quot;-m&quot;</span>)
+    Command::new(<span class="string">"git"</span>)
+        .arg(<span class="string">"commit"</span>)
+        .arg(<span class="kw">if </span>sign { <span class="string">"-S" </span>} <span class="kw">else </span>{ <span class="string">"" </span>})
+        .arg(<span class="string">"-m"</span>)
         .arg(message)
         .status()
-        .expect(<span class="string">&quot;Failed to commit.&quot;</span>);
+        .expect(<span class="string">"Failed to commit."</span>);
 }
 
 <span class="doccomment">/// Tag the commit with the given tag.
@@ -181,14 +181,14 @@
 /// ## Example
 /// ```
 /// use git::tag;
-/// tag(&quot;v1.0.0&quot;);
+/// tag("v1.0.0");
 /// ```
 </span><span class="kw">pub fn </span>tag(tag: <span class="kw-2">&amp;</span>str) {
-    Command::new(<span class="string">&quot;git&quot;</span>)
-        .arg(<span class="string">&quot;tag&quot;</span>)
+    Command::new(<span class="string">"git"</span>)
+        .arg(<span class="string">"tag"</span>)
         .arg(tag)
         .status()
-        .expect(<span class="string">&quot;Failed to tag.&quot;</span>);
+        .expect(<span class="string">"Failed to tag."</span>);
 }
 
 <span class="doccomment">/// Push the changes to the remote.
@@ -196,13 +196,13 @@
 /// ```
 /// use git::push;
 /// push(true); // If the commit have a tag.
-/// push(false); // If the commit don&#39;t have a tag.
+/// push(false); // If the commit don't have a tag.
 /// ```
 </span><span class="kw">pub fn </span>push() {
-    Command::new(<span class="string">&quot;git&quot;</span>)
-        .arg(<span class="string">&quot;push&quot;</span>)
+    Command::new(<span class="string">"git"</span>)
+        .arg(<span class="string">"push"</span>)
         .status()
-        .expect(<span class="string">&quot;Failed to push.&quot;</span>);
+        .expect(<span class="string">"Failed to push."</span>);
 }
 
 <span class="doccomment">/// Push the tags to the remote.
@@ -212,11 +212,11 @@
 /// push_tag();
 /// ```
 </span><span class="kw">pub fn </span>push_tag() {
-    Command::new(<span class="string">&quot;git&quot;</span>)
-        .arg(<span class="string">&quot;push&quot;</span>)
-        .arg(<span class="string">&quot;--tags&quot;</span>)
+    Command::new(<span class="string">"git"</span>)
+        .arg(<span class="string">"push"</span>)
+        .arg(<span class="string">"--tags"</span>)
         .status()
-        .expect(<span class="string">&quot;Failed to push.&quot;</span>);
+        .expect(<span class="string">"Failed to push."</span>);
 }
 
 <span class="doccomment">/// Stages the files.
@@ -229,11 +229,11 @@
 /// add(false); // If all the files should be added.
 /// ```
 </span><span class="kw">pub fn </span>add(updated: bool) {
-    Command::new(<span class="string">&quot;git&quot;</span>)
-        .arg(<span class="string">&quot;add&quot;</span>)
-        .arg(<span class="kw">if </span>updated { <span class="string">&quot;-u&quot; </span>} <span class="kw">else </span>{ <span class="string">&quot;-A&quot; </span>})
+    Command::new(<span class="string">"git"</span>)
+        .arg(<span class="string">"add"</span>)
+        .arg(<span class="kw">if </span>updated { <span class="string">"-u" </span>} <span class="kw">else </span>{ <span class="string">"-A" </span>})
         .status()
-        .expect(<span class="string">&quot;Failed to add.&quot;</span>);
+        .expect(<span class="string">"Failed to add."</span>);
 }
 
 <span class="doccomment">/// Gets the status of the repository.
@@ -243,10 +243,10 @@
 /// status();
 /// ```
 </span><span class="kw">pub fn </span>status() {
-    Command::new(<span class="string">&quot;git&quot;</span>)
-        .arg(<span class="string">&quot;status&quot;</span>)
+    Command::new(<span class="string">"git"</span>)
+        .arg(<span class="string">"status"</span>)
         .status()
-        .expect(<span class="string">&quot;Failed to get status.&quot;</span>);
+        .expect(<span class="string">"Failed to get status."</span>);
 }
 
 <span class="doccomment">/// Gets the 10 last logs of the repository.
@@ -257,15 +257,15 @@
 /// log();
 /// ```
 </span><span class="kw">pub fn </span>log() {
-    Command::new(<span class="string">&quot;git&quot;</span>)
-        .arg(<span class="string">&quot;log&quot;</span>)
-        .arg(<span class="string">&quot;--oneline&quot;</span>)
-        .arg(<span class="string">&quot;--graph&quot;</span>)
-        .arg(<span class="string">&quot;--decorate&quot;</span>)
-        .arg(<span class="string">&quot;--all&quot;</span>)
-        .arg(<span class="string">&quot;-n&quot;</span>)
-        .arg(<span class="string">&quot;10&quot;</span>)
+    Command::new(<span class="string">"git"</span>)
+        .arg(<span class="string">"log"</span>)
+        .arg(<span class="string">"--oneline"</span>)
+        .arg(<span class="string">"--graph"</span>)
+        .arg(<span class="string">"--decorate"</span>)
+        .arg(<span class="string">"--all"</span>)
+        .arg(<span class="string">"-n"</span>)
+        .arg(<span class="string">"10"</span>)
         .status()
-        .expect(<span class="string">&quot;Failed to get log.&quot;</span>);
+        .expect(<span class="string">"Failed to get log."</span>);
 }
 </code></pre></div></section></main></body></html>
