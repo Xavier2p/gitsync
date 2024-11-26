@@ -21,14 +21,24 @@
 //! ## Usage
 //!
 //! ```console
-//! $ gsync --help
+//! $ gsync help
 //! A simple tool to use `git` with ease.
 //! Written in Rust.
 //!
-//! Usage: gsync [OPTIONS] [MESSAGE]
+//! Usage: gsync [OPTIONS] <COMMAND>
 //!
-//! Arguments:
-//!   [MESSAGE]  Message to assign to the commit [default: "[gsync]: Work in Progress"]
+//! Commands:
+//!   build     Changes that affect the build system or external dependencies
+//!   chore     Updating grunt tasks etc; no production code change
+//!   ci        Changes on the CI/CD pipeline or other DevOps tools
+//!   docs      Changes to the documentation
+//!   feat      New feature for the user, not a new feature for build script
+//!   fix       Bug fix for the user, not a fix to a build script
+//!   perf      A new performance improvement
+//!   refactor  Refactoring production code, eg. renaming a variable
+//!   style     Formatting, missing semi colons, etc; no production code change
+//!   test      Adding missing tests, refactoring tests; no production code change
+//!   help      Print this message or the help of the given subcommand(s)
 //!
 //! Options:
 //!   -t, --tag <TAG>  Tag to assign at the commit
