@@ -181,6 +181,16 @@
 <a href="#181" id="181">181</a>
 <a href="#182" id="182">182</a>
 <a href="#183" id="183">183</a>
+<a href="#184" id="184">184</a>
+<a href="#185" id="185">185</a>
+<a href="#186" id="186">186</a>
+<a href="#187" id="187">187</a>
+<a href="#188" id="188">188</a>
+<a href="#189" id="189">189</a>
+<a href="#190" id="190">190</a>
+<a href="#191" id="191">191</a>
+<a href="#192" id="192">192</a>
+<a href="#193" id="193">193</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! *A tool to earn time at each `git` actions.*
 //!
 //! ## Description
@@ -204,14 +214,24 @@
 //! ## Usage
 //!
 //! ```console
-//! $ gsync --help
+//! $ gsync help
 //! A simple tool to use `git` with ease.
 //! Written in Rust.
 //!
-//! Usage: gsync [OPTIONS] [MESSAGE]
+//! Usage: gsync [OPTIONS] &lt;COMMAND&gt;
 //!
-//! Arguments:
-//!   [MESSAGE]  Message to assign to the commit [default: "[gsync]: Work in Progress"]
+//! Commands:
+//!   build     Changes that affect the build system or external dependencies
+//!   chore     Updating grunt tasks etc; no production code change
+//!   ci        Changes on the CI/CD pipeline or other DevOps tools
+//!   docs      Changes to the documentation
+//!   feat      New feature for the user, not a new feature for build script
+//!   fix       Bug fix for the user, not a fix to a build script
+//!   perf      A new performance improvement
+//!   refactor  Refactoring production code, eg. renaming a variable
+//!   style     Formatting, missing semi colons, etc; no production code change
+//!   test      Adding missing tests, refactoring tests; no production code change
+//!   help      Print this message or the help of the given subcommand(s)
 //!
 //! Options:
 //!   -t, --tag &lt;TAG&gt;  Tag to assign at the commit
